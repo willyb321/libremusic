@@ -1,0 +1,50 @@
+<html>
+<head>
+
+	<link href="style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div id="player" style="display:none"></div>
+
+
+
+
+
+	<div class="actions" >
+		<img src="album.png" id="album">
+		<img src="icons/play.svg" onclick="togglePlay()" id="playPauseButton">
+		<img src="icons/loud.svg" onclick="toggleMute()" id="toggleMuteButton">
+		<div id="title"></div>
+	</div>
+
+
+	<form action="javascript:searchVideo(document.getElementById('search').value)" name="searchForm">
+		<input type="search" id="search" placeholder="Search" name="search" ction="javascript:searchVideo(document.getElementById('search').value)">
+	</form>
+
+	<div id="history"></div>
+
+	<button type="button" class="btn js-rewind">Rewind</button>
+	<button type="button" class="btn js-forward">Forward</button>
+	<button type="button" onclick="player.previousVideo()" class="btn js-source">Previous Video</button>
+	<button type="button" onclick="player.nextVideo()" class="btn js-source">Next Video</button>
+	<button type="button" class="btn js-mute">Mute</button>
+	<button type="button" onclick="changeSource()" class="btn js-source">Change Source</button>
+
+	<div id="myProgress">
+		<div id="myBar"></div>
+		<div id="loadBar"></div>
+		<input id="progress" type="range" value="0" min="0" max="100000" onchange="seek(this)">
+
+
+	</div>
+
+	<script type="text/javascript" src="script.js"></script>
+
+</body>
+
+
+</html>
