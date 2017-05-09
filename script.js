@@ -24,7 +24,6 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
 	// changeSource()
 	// event.target.playVideo();
-
 }
 
 // 5. The API calls this function when the player's state changes.
@@ -114,22 +113,22 @@ function togglePlay(){
 document.onkeydown= function (e) {
 	e = e || window.event;
 
-    if (e.keyCode == '32' || e.keyCode == '75') { // SPACE
+    if (e.keyCode == '32' || e.keyCode == '75') { // 'SPACE' (pause)
     	togglePlay()
     }
-    if (e.keyCode == '37' || e.keyCode == '74'){ // LEFT
+    if (e.keyCode == '37' || e.keyCode == '74'){ // 'LEFT' (rewind)
     	rewind();
     }
-    if (e.keyCode == '39' || e.keyCode == '76'){ // RIGHT
+    if (e.keyCode == '39' || e.keyCode == '76'){ // 'RIGHT' (forward)
     	fastForward();
     }
-    if (e.keyCode == '38'){ // UP
+    if (e.keyCode == '38'){ // 'UP' (volume up)
     	volumeUp();
     }
-    if (e.keyCode == '40'){ // DOWN
+    if (e.keyCode == '40'){ // 'DOWN' (volume down)
     	volumeDown();
     }
-    if (e.keyCode == '77'){ // M
+    if (e.keyCode == '77'){ // 'M' (mute)
     	toggleMute();
     }
 };
@@ -146,5 +145,46 @@ function searchVideo(query){
 		index:0
 	})
 	progressBar();
-	document.getElementById("history").innerHTML += "<a href='javascript:searchVideo(\"" + query + "\")'>" + query + "</a><br>";
+	setCookie("query", query, 365);
+	document.getElementById("history").innerHTML += "<a href='javascript:searchVideo(\"" + getCookie("query") + "\")'>" + getCookie("query") + "</a><br>";
+}
+
+
+
+// Cookie function code - courtesy of w3schools.com
+//
+// Source from May 2017: https://www.w3schools.com/js/js_cookies.asp
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            setCookie("username", user, 365);
+        }
+    }
 }

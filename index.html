@@ -7,9 +7,24 @@
 
 <body>
 
-	<div id="player" style="display:none"></div>
+	<div id="player" style="visibility: hidden;
+    						position: absolute;
+    						left: 0; 
+    						top: 0;
+    						border: none;">
+    							
+    </div>
+
+	<div id="navbar">
+		<div id="heading">
+			Libremusic
+		</div>
+	</div>
 
 
+	<form action="javascript:searchVideo(document.getElementById('search').value)" name="searchForm">
+		<input type="search" id="search" placeholder="Search" name="search"">
+	</form>
 
 
 
@@ -21,18 +36,18 @@
 	</div>
 
 
-	<form action="javascript:searchVideo(document.getElementById('search').value)" name="searchForm">
-		<input type="search" id="search" placeholder="Search" name="search" ction="javascript:searchVideo(document.getElementById('search').value)">
-	</form>
+
 
 	<div id="history"></div>
 
-	<button type="button" class="btn js-rewind">Rewind</button>
-	<button type="button" class="btn js-forward">Forward</button>
-	<button type="button" onclick="player.previousVideo()" class="btn js-source">Previous Video</button>
-	<button type="button" onclick="player.nextVideo()" class="btn js-source">Next Video</button>
-	<button type="button" class="btn js-mute">Mute</button>
-	<button type="button" onclick="changeSource()" class="btn js-source">Change Source</button>
+	<div id="controls">
+		<button type="button" class="btn js-rewind">Rewind</button>
+		<button type="button" class="btn js-forward">Forward</button>
+		<button type="button" onclick="player.previousVideo()" class="btn js-source">Previous Video</button>
+		<button type="button" onclick="player.setPlaybackRate(0.5*player.getPlaybackRate())" class="btn js-source">Half Speed</button>
+		<button type="button" onclick="player.setPlaybackRate(2*player.getPlaybackRate())" class="btn js-source">Double Speed</button>
+		<button type="button" onclick="player.nextVideo()" class="btn js-source">Next Video</button>
+	</div>
 
 	<div id="myProgress">
 		<div id="myBar"></div>
