@@ -10,8 +10,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
-		height: '390',
-		width: '640',
+		height: '100%',
+		width: '100%',
 		events: {
 			'onReady': onPlayerReady,
 			'onStateChange': onPlayerStateChange
@@ -125,9 +125,9 @@ document.onkeydown= function (e) {
     if (e.keyCode == '40'){ // 'DOWN' (volume down)
     	volumeDown();
     }
-    if (e.keyCode == '77'){ // 'M' (mute)
+    /*if (e.keyCode == '77'){ // 'M' (mute)
     	toggleMute();
-    }
+    }*/
 };
 
 
@@ -136,15 +136,19 @@ document.onkeydown= function (e) {
 function searchVideo(query){
 
 	setAlbumArt(query);
-	setTitle(query);
+	setTitle(query,"title");
 	togglePlay();
 	console.log(query);
 
-	player.loadPlaylist({
-		listType:"search",
-		list:query,
-		index:0
+	searchTrack(query).then(function (data) {
+
+		player.loadPlaylist({
+			listType:"search",
+			list:data.results.trackmatches.track[0].name + " - " + data.results.trackmatches.track[0].artist,
+			index:0
+		})
 	})
+
 	progressBar();
 
 

@@ -18,12 +18,17 @@ function setAlbumArt(query) {
 			console.log(albumArt);
 			var album = document.getElementById("album");
 			album.src=albumArt;
+
+			
 		})
 	})
 }
 
-function setTitle(query) {
+function setTitle(query,id) {
 	searchTrack(query).then(function (data) {
-		document.getElementById( "title" ).innerText = data.results.trackmatches.track[0].name;
+		document.getElementById(id).innerText = data.results.trackmatches.track[0].name + " - " + data.results.trackmatches.track[0].artist;
+	
+
+
 	})
 }
