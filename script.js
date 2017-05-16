@@ -35,9 +35,6 @@ function onPlayerStateChange(event) {
 		setTimeout(stopVideo, 6000);
 		done = true;
 	}*/
-	if (player.getPlayerState() == 1) {
-    	document.getElementById( "title" ).innerText = player.getVideoData().title;
-    } 
 
 }
 
@@ -137,18 +134,33 @@ document.onkeydown= function (e) {
 // This function takes a video search query as input
 // and changes the video to the first YouTube result
 function searchVideo(query){
+
+	setAlbumArt(query);
+	setTitle(query);
 	togglePlay();
 	console.log(query);
+
 	player.loadPlaylist({
 		listType:"search",
 		list:query,
 		index:0
 	})
 	progressBar();
+
+
 	setCookie("query", query, 365);
-	document.getElementById("history").innerHTML += "<a href='javascript:searchVideo(\"" + getCookie("query") + "\")'>" + getCookie("query") + "</a><br>";
+
+	document.getElementById("history").innerHTML += 
+	"<li><a href='javascript:searchVideo(\"" + getCookie("query") + "\")'>" 
+	+ getCookie("query") + "</a></li>";
+
+
 }
 
+
+function loadHistory(){
+	document.getElementById("history").innerHTML += "<a href='javascript:searchVideo(\"" + getCookie("query") + "\")'>" + getCookie("query") + "</a><br>";
+}
 
 
 // Cookie function code - courtesy of w3schools.com
@@ -175,16 +187,4 @@ function getCookie(cname) {
         }
     }
     return "";
-}
-
-function checkCookie() {
-    var user = getCookie("username");
-    if (user != "") {
-        alert("Welcome again " + user);
-    } else {
-        user = prompt("Please enter your name:", "");
-        if (user != "" && user != null) {
-            setCookie("username", user, 365);
-        }
-    }
 }

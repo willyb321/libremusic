@@ -3,6 +3,19 @@
 
 	<link href="style.css" rel="stylesheet">
 
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+  	<script type="text/javascript" src="script.js"></script>
+  	  	<script type="text/javascript" src="api.js"></script>
+
+
+
+
+	<title>Libremusic</title>
+
 </head>
 
 <body>
@@ -29,7 +42,7 @@
 
 
 	<div class="actions" >
-		<img src="album.png" id="album">
+		<img src="album.png" width="86" height="86" id="album">
 		<img src="icons/play.svg" onclick="togglePlay()" id="playPauseButton">
 		<img src="icons/loud.svg" onclick="toggleMute()" id="toggleMuteButton">
 		<div id="title"></div>
@@ -38,7 +51,7 @@
 
 
 
-	<div id="history"></div>
+	<ul id="history"></ul>
 
 	<div id="controls">
 		<button type="button" class="btn js-rewind">Rewind</button>
@@ -56,8 +69,10 @@
 
 
 	</div>
+<script>
 
-	<script type="text/javascript" src="script.js"></script>
+</script>
+	
 
 </body>
 
