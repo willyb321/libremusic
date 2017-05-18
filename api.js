@@ -25,14 +25,14 @@ function setAlbumArt(query) {
 
 		getTrackInfo(artist,name)
 		.then(function (data) {
-		
+
 			var albumArt =  data.track.album.image[2]["#text"];
 			console.info("Loaded " + albumArt);
 			document.getElementById("album").src=albumArt;
 
 			imgsrcToB64(document.getElementById("album"))
 			.then(art => {
-				setLStorage(name, art)
+				setLStorage(name + ' - ' + artist, art)
 				document.getElementById("album").src=art;
 			console.log(art);
 			})
@@ -42,20 +42,21 @@ function setAlbumArt(query) {
 			setCookie("history" + historySize, name + " - " + artist, 365);
 			setCookie("historyLength", historySize+1, 365);
 
-			
+
 		})
 		.catch(function (data){
 			console.error("Could not find album art for " + query);
 			document.getElementById("album").src="album.png";
-		}) 
+		})
 
 
 
 	})
 }
 
-function populateHistory(query) {
-	const imgUrl = getLStorage(query);
+async function populateHistory(query) {
+	const imgUrl = await getLStorage(query);
+	console.log(imgUrl)
 	searchTrack(query)
 	.then(function (data) {
 
@@ -64,7 +65,7 @@ function populateHistory(query) {
 
 		getTrackInfo(artist,name)
 		.then(function (data) {
-		
+
 			var albumArt =  data.track.album.image[2]["#text"];
 			var albumArt = imgUrl || data.track.album.image[2]["#text"];
 			console.info("Loaded " + albumArt);
@@ -72,31 +73,31 @@ function populateHistory(query) {
 			document.getElementById("history").innerHTML =
 			"<a class='card' href='javascript:searchVideo(\""+name+" - "+artist+"\")'>"+
 			"<img class='album' src='"+albumArt+"'>"+
-			"<br>"+ 
+			"<br>"+
 			"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
 			"</a>"
 			+ document.getElementById("history").innerHTML;
 
 
 
-			
+
 		})
 		.catch(function (data){
 			console.error("Could not find album art for " + query);
 			document.getElementById("history").innerHTML =
 			"<a class='card' href='javascript:searchVideo(\""+name+" - "+artist+"\")'>"+
 			"<img class='album' src='album.png'>"+
-			"<br>"+ 
+			"<br>"+
 			"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
 			"</a>"
 			+ document.getElementById("history").innerHTML;
 
-		}) 
+		})
 
 
 
 	})
-	
+
 }
 
 
