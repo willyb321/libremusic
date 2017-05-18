@@ -30,7 +30,7 @@ function setAlbumArt(query) {
 			console.info("Loaded " + albumArt);
 			document.getElementById("album").src=albumArt;
 
-			imgsrcToB64(document.getElementById("album"))
+			imgsrcToB64(document.getElementById("album").src)
 			.then(art => {
 				setLStorage(name + ' - ' + artist, art)
 				document.getElementById("album").src=art;
@@ -69,7 +69,12 @@ async function populateHistory(query) {
 			var albumArt =  data.track.album.image[2]["#text"];
 			var albumArt = imgUrl || data.track.album.image[2]["#text"];
 			console.info("Loaded " + albumArt);
-
+			imgsrcToB64(albumArt)
+			.then(art => {
+				setLStorage(name + ' - ' + artist, art)
+				albumArt = art
+			console.log(art);
+			})
 			document.getElementById("history").innerHTML =
 			"<a class='card' href='javascript:searchVideo(\""+name+" - "+artist+"\")'>"+
 			"<img class='album' src='"+albumArt+"'>"+

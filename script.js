@@ -39,7 +39,7 @@ function onPlayerStateChange(event) {
 }
 
 
-// This function takes in a YouTube video id and changes 
+// This function takes in a YouTube video id and changes
 // the video on the page to this video
 function changeSource(source) {
 	var source = prompt('Video Id?');
@@ -76,10 +76,10 @@ function rewind(){
 	player.seekTo(player.getCurrentTime() - 10);
 }
 function volumeUp(){
-	player.setVolume(player.getVolume() + 10);	
+	player.setVolume(player.getVolume() + 10);
 }
 function volumeDown(){
-	player.setVolume(player.getVolume() - 10);	
+	player.setVolume(player.getVolume() - 10);
 }
 function seek(ts){
 	player.seekTo(ts.value/100000*player.getDuration(), true);
@@ -88,20 +88,20 @@ function seek(ts){
 // These functions toggle video settings and change textures
 function toggleMute(){
 	if (player.isMuted()) {
-		player.unMute()	
+		player.unMute()
 		document.getElementById("toggleMuteButton").src = "icons/loud.svg"
 	} else {
-		player.mute()	
+		player.mute()
 		document.getElementById("toggleMuteButton").src = "icons/mute.svg"
 	}
 }
 
 function togglePlay(){
 	if (player.getPlayerState() == 1) {
-		player.pauseVideo()	
+		player.pauseVideo()
 		document.getElementById("playPauseButton").src = "icons/play.svg"
 	} else {
-		player.playVideo()	
+		player.playVideo()
 		document.getElementById("playPauseButton").src = "icons/pause.svg"
 	}
 }
@@ -162,12 +162,12 @@ function searchVideo(query){
 
 
 function loadHistory(){
-	
+
 }
 
 async function imgsrcToB64(img) {
 	return new Promise((resolve, reject) => {
-		blobUtil.imgSrcToDataURL(img.src, 'image/png',
+		blobUtil.imgSrcToDataURL(img, 'image/png',
                          'Anonymous', 1.0).then(function (blob) {
 			resolve(blob)
 }).catch(function (err) {
