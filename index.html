@@ -9,7 +9,18 @@
   crossorigin="anonymous"></script>
 
   	<script type="text/javascript" src="script.js"></script>
-  	  	<script type="text/javascript" src="api.js"></script>
+  	<script type="text/javascript" src="api.js"></script>
+  	<script>
+
+  			
+        	for (var i = 0;i<getCookie("historyLength");i++) {
+				populateHistory(getCookie("history" + i))
+  			}
+
+
+
+
+  	</script>
 
 
 
@@ -49,9 +60,21 @@
 	</div>
 
 
+	<div id="body">
+			<h2>
+			History
+			</h2>
+		<div id="history">
+	
+		</div>
 
+		<div id="popular">
+			<h2>
+				Popular
+			</h2>
 
-	<ul id="history"></ul>
+		</div>
+	</div>
 
 	<div id="controls" style="display:none">
 		<button type="button" class="btn js-rewind">Rewind</button>

@@ -95,6 +95,7 @@ function toggleMute(){
 		document.getElementById("toggleMuteButton").src = "icons/mute.svg"
 	}
 }
+
 function togglePlay(){
 	if (player.getPlayerState() == 1) {
 		player.pauseVideo()	
@@ -149,21 +150,19 @@ function searchVideo(query){
 		})
 	})
 
+
+
+
+
 	progressBar();
-
-
-	setCookie("query", query, 365);
-
-	document.getElementById("history").innerHTML += 
-	"<li><a href='javascript:searchVideo(\"" + getCookie("query") + "\")'>" 
-	+ getCookie("query") + "</a></li>";
+	populateHistory(query);
 
 
 }
 
 
 function loadHistory(){
-	document.getElementById("history").innerHTML += "<a href='javascript:searchVideo(\"" + getCookie("query") + "\")'>" + getCookie("query") + "</a><br>";
+	
 }
 
 
@@ -192,3 +191,5 @@ function getCookie(cname) {
     }
     return "";
 }
+
+
