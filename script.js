@@ -165,6 +165,16 @@ function loadHistory(){
 	
 }
 
+async function imgsrcToB64(img) {
+	return new Promise((resolve, reject) => {
+		blobUtil.imgSrcToDataURL(img.src, 'image/png',
+                         'Anonymous', 1.0).then(function (blob) {
+			resolve(blob)
+}).catch(function (err) {
+  console.log(err)// error
+});
+	})
+}
 
 // Cookie function code - courtesy of w3schools.com
 //
@@ -176,7 +186,12 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-
+function setLStorage(name, data) {
+	return localStorage.setItem(name, data);
+}
+async function getLStorage(name) {
+	return localStorage.getItem(name);
+}
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');

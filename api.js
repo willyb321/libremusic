@@ -30,6 +30,12 @@ function setAlbumArt(query) {
 			console.info("Loaded " + albumArt);
 			document.getElementById("album").src=albumArt;
 
+			imgsrcToB64(document.getElementById("album"))
+			.then(art => {
+				setLStorage(name, art)
+				document.getElementById("album").src=art;
+			console.log(art);
+			})
 			historySize = document.getElementById("history").getElementsByTagName('a').length;
 			console.log(historySize);
 
@@ -49,6 +55,7 @@ function setAlbumArt(query) {
 }
 
 function populateHistory(query) {
+	const imgUrl = getLStorage(query);
 	searchTrack(query)
 	.then(function (data) {
 
@@ -59,6 +66,7 @@ function populateHistory(query) {
 		.then(function (data) {
 		
 			var albumArt =  data.track.album.image[2]["#text"];
+			var albumArt = imgUrl || data.track.album.image[2]["#text"];
 			console.info("Loaded " + albumArt);
 
 			document.getElementById("history").innerHTML =
