@@ -24,6 +24,8 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
 	// changeSource()
 	// event.target.playVideo();
+	player.playVideo()
+
 }
 
 // 5. The API calls this function when the player's state changes.
@@ -35,7 +37,10 @@ function onPlayerStateChange(event) {
 		setTimeout(stopVideo, 6000);
 		done = true;
 	}*/
-
+	
+	if (player.getPlayerState() == 1) {
+		document.getElementById("playPauseButton").src = "icons/pause.svg"
+	}
 }
 
 
@@ -136,9 +141,11 @@ document.onkeydown= function (e) {
 // and changes the video to the first YouTube result
 function searchVideo(query){
 
+	player.pauseVideo()
+	document.getElementById("playPauseButton").src = "icons/play.svg"
 
 	loadSong(query);
-	togglePlay();
+	
 	console.log(query);
 
 	searchTrack(query).then(function (data) {
@@ -148,6 +155,8 @@ function searchVideo(query){
 			list:data.results.trackmatches.track[0].name + " - " + data.results.trackmatches.track[0].artist,
 			index:0
 		})
+		
+		
 	})
 
 	progressBar();

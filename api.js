@@ -45,7 +45,7 @@ function loadSong(query) {
 				"</a>"
 				+ document.getElementById("history").innerHTML;
 
-
+				
 				localStorage.setItem("history", document.getElementById("history").innerHTML);
 
 
