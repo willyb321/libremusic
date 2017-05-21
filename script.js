@@ -137,7 +137,6 @@ document.onkeydown= function (e) {
 function searchVideo(query){
 
 	setAlbumArt(query);
-	setTitle(query,"title");
 	togglePlay();
 	console.log(query);
 
@@ -150,18 +149,15 @@ function searchVideo(query){
 		})
 	})
 
-
-
-
-
 	progressBar();
-	populateHistory(query);
 
 
 }
 
 
-function loadHistory(){
+function addToFavourites(){
+	alert(document.getElementById("title").innerText);
+
 
 }
 
@@ -176,35 +172,9 @@ async function imgsrcToB64(img) {
 	})
 }
 
-// Cookie function code - courtesy of w3schools.com
-//
-// Source from May 2017: https://www.w3schools.com/js/js_cookies.asp
-
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
 function setLStorage(name, data) {
 	return localStorage.setItem(name, data);
 }
 async function getLStorage(name) {
 	return localStorage.getItem(name);
 }
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-

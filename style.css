@@ -66,6 +66,17 @@
     bottom:31px;
 }
 
+#favourite{
+	width:24px;	
+	-webkit-filter: invert(100%);
+    filter: invert(100%);
+    bottom:0;
+    right:96px;
+    position:absolute;
+    bottom:31px;
+    width:24px;
+}
+
 #album{
 	float:left;
 	position:absolute
