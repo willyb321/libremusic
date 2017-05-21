@@ -4,32 +4,19 @@
 	<link href="style.css" rel="stylesheet">
 
 	<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
   	<script type="text/javascript" src="script.js"></script>
-  	<script type="text/javascript" src="api.js"></script>
-  <script type="text/javascript" src="blob-util.min.js"></script>
-  <script type="text/javascript" src="script.js"></script>
-  <script type="text/javascript" src="api.js"></script>
-  	<script>
-
-
-  	$(document).ready(function(){
-  		document.getElementById("history").innerHTML = localStorage.getItem("history");
-
-
+	<script type="text/javascript" src="blob-util.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="api.js"></script>
+	<script>
+	$(document).ready(function(){
+		document.getElementById("history").innerHTML = localStorage.getItem("history");
+		document.getElementById("favourites").innerHTML = localStorage.getItem("favourites");
   	});
-  			
-
-
-
-
   	</script>
-
-
-
 
 	<title>Libremusic</title>
 
@@ -68,26 +55,19 @@
 
 
 	<div id="body">
-			<h2>
-			History
-			</h2>
+		<h2>History</h2>
 		<div id="history">
-	
 		</div>
 
+
+		<h2>Popular</h2>
 		<div id="popular">
-			<h2>
-				Popular
-			</h2>
-
 		</div>
 
+		<h2>Favourites</h2>
 		<div id="favourites">
-			<h2>
-				Favourites
-			</h2>
-
 		</div>
+
 	</div>
 
 	<div id="controls" style="display:none">

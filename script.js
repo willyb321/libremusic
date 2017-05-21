@@ -137,7 +137,7 @@ document.onkeydown= function (e) {
 function searchVideo(query){
 
 
-	setAlbumArt(query);
+	loadSong(query);
 	togglePlay();
 	console.log(query);
 
@@ -157,9 +157,26 @@ function searchVideo(query){
 
 
 function addToFavourites(){
-	alert(document.getElementById("title").innerText);
+	name = document.getElementById("title").innerText;
+	artist = name.slice(name.indexOf("-")+1,name.length);
+	name = name.slice(0,name.indexOf("-")-1);
+	art = document.getElementById("album").src;
 
+	document.getElementById("favourites").innerHTML =
+				"<a class='card' href='javascript:searchVideo(\""+name+" - "+artist+"\")'>"+
+				"<img class='album' src='"+art+"'>"+
+				"<br>"+
+				"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
+				"</a>"
+				+ document.getElementById("favourites").innerHTML;
 
+	localStorage.setItem("favourites", document.getElementById("favourites").innerHTML);
+
+}
+
+function clearHistory(){
+	localStorage.removeItem("history")
+	document.getElementById("history").innerHTML = '';
 }
 
 async function imgsrcToB64(img) {
@@ -167,15 +184,9 @@ async function imgsrcToB64(img) {
 		blobUtil.imgSrcToDataURL(img, 'image/png',
                          'Anonymous', 1.0).then(function (blob) {
 			resolve(blob)
-}).catch(function (err) {
-  console.log(err)// error
-});
+		}).catch(function (err) {
+  			console.log(err)// error
+		});
 	})
 }
 
-function setLStorage(name, data) {
-	return localStorage.setItem(name, data);
-}
-async function getLStorage(name) {
-	return localStorage.getItem(name);
-}

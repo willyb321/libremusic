@@ -14,7 +14,7 @@ function getTrackInfo(artist, track){
 	});
 }
 
-function setAlbumArt(query) {
+function loadSong(query) {
 	searchTrack(query)
 	.then(function (data) {
 
@@ -29,12 +29,11 @@ function setAlbumArt(query) {
 
 			var mbid = data.track.mbid;
 			var albumURL =  data.track.album.image[2]["#text"];
-			$( "." + mbid).remove();
+			$("." + mbid).remove();
 		
 
 			imgsrcToB64(albumURL)
 			.then(art => {
-				setLStorage(mbid, art)
 				document.getElementById("album").src=art;
 
 
