@@ -22,9 +22,33 @@ function onYouTubeIframeAPIReady() {
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
+		var prog = document.getElementById("myBar");
+	var load = document.getElementById("loadBar");
 	// changeSource()
 	// event.target.playVideo();
 	player.playVideo()
+
+	var down = false;
+
+	setInterval(function() {
+
+		$(document).mousedown(function() {
+		    down = true;
+		}).mouseup(function() {
+		    down = false;  
+		});
+
+		if (player.getPlayerState() == 1) {
+			prog.style.width = player.getCurrentTime() / player.getDuration() * 100 + '%';
+			load.style.width = player.getVideoLoadedFraction() * 100 + '%';
+			if (player.getVideoLoadedFraction() > 0 && (!down)) {
+				document.getElementById("progress").value = player.getCurrentTime()*100000/player.getDuration();
+			} else if (!down){
+				document.getElementById("progress").value = 0;
+			}
+		}
+
+	}, 300);
 
 }
 
@@ -43,7 +67,6 @@ function onPlayerStateChange(event) {
 	}
 }
 
-
 // This function takes in a YouTube video id and changes
 // the video on the page to this video
 function changeSource(source) {
@@ -56,18 +79,14 @@ function changeSource(source) {
 
 
 // This function defines the rules for the progress bar
-function progressBar(progress, total) {
+function progressBar(progress, loaded, total) {
 	var prog = document.getElementById("myBar");
 	var load = document.getElementById("loadBar");
-	setInterval(() => {
-		prog.style.width = player.getCurrentTime() / player.getDuration() * 100 + '%';
-		load.style.width = player.getVideoLoadedFraction() * 100 + '%';
-		if (player.getVideoLoadedFraction() > 0) {
-			document.getElementById("progress").value = player.getCurrentTime()*100000/player.getDuration();
-		} else {
-			document.getElementById("progress").value = 0;
-		}
-	}, 300);
+	var handle = document.getElementById("progress");
+
+	prog.style.width = progress;
+	load.style.width = loaded;
+	handle.value = progress;
 
 
 }
@@ -105,7 +124,7 @@ function togglePlay(){
 	if (player.getPlayerState() == 1) {
 		player.pauseVideo()
 		document.getElementById("playPauseButton").src = "icons/play.svg"
-	} else {
+	} else if (player.getPlayerState() == 2) {
 		player.playVideo()
 		document.getElementById("playPauseButton").src = "icons/pause.svg"
 	}
@@ -113,35 +132,43 @@ function togglePlay(){
 
 
 // This function manages hotkeys
-document.onkeydown= function (e) {
-	e = e || window.event;
 
-    if (e.keyCode == '32' || e.keyCode == '75') { // 'SPACE' (pause)
-    	togglePlay()
-    }
-    if (e.keyCode == '37' || e.keyCode == '74'){ // 'LEFT' (rewind)
-    	rewind();
-    }
-    if (e.keyCode == '39' || e.keyCode == '76'){ // 'RIGHT' (forward)
-    	fastForward();
-    }
-    if (e.keyCode == '38'){ // 'UP' (volume up)
-    	volumeUp();
-    }
-    if (e.keyCode == '40'){ // 'DOWN' (volume down)
-    	volumeDown();
-    }
-    /*if (e.keyCode == '77'){ // 'M' (mute)
-    	toggleMute();
-    }*/
-};
+    	document.onkeydown= function (e) {
+			e = e || window.event;
+
+		    if (e.keyCode == '32' || e.keyCode == '75') { // 'SPACE' (pause)
+		    	togglePlay()
+		    }
+		    if (e.keyCode == '37' || e.keyCode == '74'){ // 'LEFT' (rewind)
+		    	rewind();
+		    }
+		    if (e.keyCode == '39' || e.keyCode == '76'){ // 'RIGHT' (forward)
+		    	fastForward();
+		    }
+		    if (e.keyCode == '38'){ // 'UP' (volume up)
+		    	volumeUp();
+		    }
+		    if (e.keyCode == '40'){ // 'DOWN' (volume down)
+		    	volumeDown();
+		    }
+		    /*if (e.keyCode == '77'){ // 'M' (mute)
+		    	toggleMute();
+		    }*/
+		
+		}
+
 
 
 // This function takes a video search query as input
 // and changes the video to the first YouTube result
 function searchVideo(query){
+	var prog = document.getElementById("myBar");
+	var load = document.getElementById("loadBar");
 
-	player.pauseVideo()
+	
+	player.pauseVideo();
+	progressBar(0, 0, 0);
+
 	document.getElementById("playPauseButton").src = "icons/play.svg"
 
 	loadSong(query);
@@ -159,7 +186,6 @@ function searchVideo(query){
 		
 	})
 
-	progressBar();
 
 
 }
@@ -198,4 +224,5 @@ async function imgsrcToB64(img) {
 		});
 	})
 }
+
 
