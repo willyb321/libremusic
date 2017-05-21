@@ -136,6 +136,7 @@ document.onkeydown= function (e) {
 // and changes the video to the first YouTube result
 function searchVideo(query){
 
+
 	setAlbumArt(query);
 	togglePlay();
 	console.log(query);

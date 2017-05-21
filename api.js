@@ -21,35 +21,37 @@ function setAlbumArt(query) {
 		const artist = data.results.trackmatches.track[0].artist;
 		const name = data.results.trackmatches.track[0].name;
 		document.getElementById("title").innerText = name + " - " + artist;
+		
 
 
 		getTrackInfo(artist,name)
 		.then(function (data) {
 
+			var mbid = data.track.mbid;
 			var albumURL =  data.track.album.image[2]["#text"];
+			$( "." + mbid).remove();
 		
 
 			imgsrcToB64(albumURL)
 			.then(art => {
-				setLStorage(name + ' - ' + artist, art)
+				setLStorage(mbid, art)
 				document.getElementById("album").src=art;
 
 
 				document.getElementById("history").innerHTML =
-				"<a class='card' href='javascript:searchVideo(\""+name+" - "+artist+"\")'>"+
+				"<a class='card " + mbid + "' href='javascript:searchVideo(\""+name+" - "+artist+"\")'>"+
 				"<img class='album' src='"+art+"'>"+
 				"<br>"+
 				"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
 				"</a>"
 				+ document.getElementById("history").innerHTML;
 
-				
+
 				localStorage.setItem("history", document.getElementById("history").innerHTML);
 
 
 			})
 			
-
 
 		})
 		.catch(function (data){
