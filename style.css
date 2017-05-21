@@ -6,11 +6,13 @@
 	position:fixed;
 	bottom:86;
 	left:0;
+	z-index:2;
 }
 #myBar {
 	width: 0%;
 	height: 4px;
 	background-color: #d32f2f;
+
 }
 
 #myBar, #loadBar {
@@ -42,6 +44,7 @@
 	background-color:#455a64;
 	height:86px;
 	display:inline;
+	z-index:2;
 
 }
 
@@ -68,8 +71,6 @@
 
 #favourite{
 	width:24px;	
-	-webkit-filter: invert(100%);
-    filter: invert(100%);
     bottom:0;
     right:96px;
     position:absolute;
@@ -186,7 +187,7 @@ input[type=range]::-ms-thumb {
 #search{
 	position:absolute;
 	right:50px;
-	top:40px;
+	top:38px;
 	border:none;
 	border-radius: 2px;
 	height:24px;
@@ -247,4 +248,16 @@ body{
 
 #history{
 	position:relative;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+#player{
+	position: absolute;
+	left: 0; 
+	top: 0;
+	border: none;
+	z-index:1;
 }

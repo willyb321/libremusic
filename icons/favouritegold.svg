@@ -7,7 +7,7 @@
   </clipPath>
  </defs>
  <defs class="TextShapeIndex">
-  <g ooo:slide="id1" ooo:id-list="id3 id4"/>
+  <g ooo:slide="id1" ooo:id-list="id3"/>
  </defs>
  <defs class="EmbeddedBulletChars">
   <g id="bullet-char-template(57356)" transform="scale(0.00048828125,-0.00048828125)">
@@ -49,15 +49,10 @@
   <g>
    <g id="id1" class="Slide" clip-path="url(#presentation_clip_path)">
     <g class="Page">
-     <g class="com.sun.star.drawing.PolyPolygonShape">
-      <g id="id3">
-       <rect class="BoundingBox" stroke="none" fill="none" x="8" y="24" width="842" height="803"/>
-      </g>
-     </g>
      <g class="com.sun.star.drawing.ClosedBezierShape">
-      <g id="id4">
-       <rect class="BoundingBox" stroke="none" fill="none" x="8" y="24" width="841" height="802"/>
-       <path fill="rgb(255,255,255)" stroke="none" d="M 295,281 C 295,281 136,299 30,311 21,312 12,318 9,328 6,337 9,348 16,354 95,427 213,534 213,534 213,534 181,690 159,795 157,804 161,814 169,820 177,826 188,826 196,821 288,769 428,690 428,690 428,690 567,769 659,822 668,826 678,826 686,820 695,814 698,804 696,795 675,690 642,534 642,534 642,534 761,427 839,354 846,348 849,337 846,328 843,318 835,312 825,311 719,299 561,281 561,281 561,281 495,136 451,39 447,30 438,24 428,24 418,24 409,30 405,39 362,136 295,281 295,281 Z"/>
+      <g id="id3">
+       <rect class="BoundingBox" stroke="none" fill="none" x="8" y="24" width="840" height="801"/>
+       <path fill="rgb(255,193,7)" stroke="none" d="M 295,281 C 295,281 136,299 30,311 21,312 12,318 9,328 6,337 9,348 16,354 95,426 213,533 213,533 213,533 181,689 159,794 157,803 161,813 169,819 177,825 188,825 196,820 288,768 427,689 427,689 427,689 566,768 658,821 667,825 677,825 685,819 694,813 697,803 695,794 674,689 641,533 641,533 641,533 760,426 838,354 845,348 848,337 845,328 842,318 834,312 824,311 718,299 560,281 560,281 560,281 494,136 450,39 446,30 437,24 427,24 417,24 408,30 404,39 361,136 295,281 295,281 Z"/>
       </g>
      </g>
     </g>

@@ -2,16 +2,13 @@
 <head>
 
 	<link href="style.css" rel="stylesheet">
-
-	<script
-	src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
   	<script type="text/javascript" src="script.js"></script>
 	<script type="text/javascript" src="blob-util.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 	<script type="text/javascript" src="api.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
+
 	$(document).ready(function(){
 		document.getElementById("history").innerHTML = localStorage.getItem("history");
 		document.getElementById("favourites").innerHTML = localStorage.getItem("favourites");
@@ -24,11 +21,7 @@
 
 <body>
 
-	<div id="player" style="visibility: hidden;
-    						position: absolute;
-    						left: 0; 
-    						top: 0;
-    						border: none;">
+	<div id="player" style="visibility: hidden">
     							
     </div>
 

@@ -36,6 +36,10 @@ function onPlayerReady(event) {
 		    down = true;
 		}).mouseup(function() {
 		    down = false;  
+		    if (player.getPlayerState() == 2) {
+		    	prog.style.width = document.getElementById("progress").value/1000 + '%';
+		    }
+
 		});
 
 		if (player.getPlayerState() == 1) {
@@ -48,7 +52,7 @@ function onPlayerReady(event) {
 			}
 		}
 
-	}, 300);
+	}, 100);
 
 }
 
@@ -65,7 +69,20 @@ function onPlayerStateChange(event) {
 	if (player.getPlayerState() == 1) {
 		document.getElementById("playPauseButton").src = "icons/pause.svg"
 	}
+
+
+
+	if (player.getPlayerState() == 0) {
+		player.stopVideo();
+		progressBar(0,0,0);
+		document.getElementById("album").src = "album.png";
+		document.getElementById("title").innerText = "";
+		document.getElementById("playPauseButton").src = "icons/play.svg"
+
+	}
+
 }
+
 
 // This function takes in a YouTube video id and changes
 // the video on the page to this video
@@ -182,8 +199,10 @@ function searchVideo(query){
 			list:data.results.trackmatches.track[0].name + " - " + data.results.trackmatches.track[0].artist,
 			index:0
 		})
-		
-		
+
+
+			
+
 	})
 
 
@@ -192,6 +211,16 @@ function searchVideo(query){
 
 
 function addToFavourites(){
+
+	fav = document.getElementById("favourite");
+
+	if (fav.src = "icons/favourite.svg") {
+		document.getElementById("favourite").src = "icons/favouritegold.svg";
+	} else {
+		document.getElementById("favourite").src = "icons/favourite.svg";
+	}
+
+	
 	name = document.getElementById("title").innerText;
 	artist = name.slice(name.indexOf("-")+1,name.length);
 	name = name.slice(0,name.indexOf("-")-1);
