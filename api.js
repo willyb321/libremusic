@@ -14,6 +14,13 @@ function getTrackInfo(artist, track){
 	});
 }
 
+
+function getTopTracks(artist, track){
+	return $.ajax({
+		url:"http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key="+api_key+"&format=json"
+	});
+}
+
 function loadSong(query) {
 	searchTrack(query)
 	.then(function (data) {
@@ -56,11 +63,18 @@ function loadSong(query) {
 			console.log(mbid)
 			$("." + mbid).remove();
 			console.error("Could not find album art for " + query);
-			document.getElementById("album").src="album.png";
+
+			if ($("." + mbid.replace("h","p")) != null){
+				art = $("." + mbid.replace("h","p"))[0].firstChild.src;
+			} else {
+				art = "album.png"
+			}
+			document.getElementById("album").src=art;
+			
 
 			document.getElementById("history").innerHTML =
 				"<a class='card " + mbid + "' href='javascript:searchVideo(\""+name.replace("'","")+" - "+artist+"\")'>"+
-				"<img class='album' src='album.png'>"+
+				"<img class='album' src='"+art+"'>"+
 				"<br>"+
 				"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
 				"</a>"
@@ -101,4 +115,33 @@ function addToFavourites(){
 		// Save new favourites
 		localStorage.setItem("favourites", document.getElementById("favourites").innerHTML);
 	})
+}
+
+function loadTopTracks(){
+
+	getTopTracks()
+	.then(function(data){
+		html = '';
+		for (i=0;i<8;i++){
+			name = data.tracks.track[i].name;
+			artist = data.tracks.track[i].artist.name;
+			art = data.tracks.track[i].image[2]["#text"];
+			console.log(art)
+
+			var mbid = 'p' + btoa((name+" - "+artist).match(/[\p{L}\s]+/g)).replace(/=/g,"");
+
+
+			html = html +
+			"<a class='card " + mbid + "' href='javascript:searchVideo(\""+name.replace("'","")+" - "+artist+"\")'>"+
+			"<img class='album' src='"+art+"'>"+
+			"<br>"+
+			"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
+			"</a>"
+			;
+
+		}
+		document.getElementById("popular").innerHTML = html;
+		
+	})
+
 }

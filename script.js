@@ -81,6 +81,21 @@ function onPlayerStateChange(event) {
 
 	}
 
+	if (player.getPlayerState() == 5) {
+			document.getElementById("youtubeactive").style.pointerEvents = "none"
+			document.getElementById("youtube").style.pointerEvents = "none"
+			document.getElementById("clickShield").style.visibility = "hidden"
+			$('#player').fadeOut('fast', function() {
+	   			document.getElementById("player").style.visibility = "hidden"
+		 		$('#youtubeactive').fadeOut('fast', function() {
+		   			document.getElementById("youtubeactive").style.visibility = "hidden"
+		   			document.getElementById("youtubeactive").style.pointerEvents = "all"
+					document.getElementById("youtube").style.pointerEvents = "all"
+				});
+				document.getElementById("youtube").style.visibility = "visible"
+			});
+	}
+
 }
 
 
@@ -150,29 +165,34 @@ function togglePlay(){
 
 // This function manages hotkeys
 
-    	document.onkeydown= function (e) {
-			e = e || window.event;
-
-		    if (e.keyCode == '32' || e.keyCode == '75') { // 'SPACE' (pause)
-		    	togglePlay()
-		    }
-		    if (e.keyCode == '37' || e.keyCode == '74'){ // 'LEFT' (rewind)
-		    	rewind();
-		    }
-		    if (e.keyCode == '39' || e.keyCode == '76'){ // 'RIGHT' (forward)
-		    	fastForward();
-		    }
-		    if (e.keyCode == '38'){ // 'UP' (volume up)
-		    	volumeUp();
-		    }
-		    if (e.keyCode == '40'){ // 'DOWN' (volume down)
-		    	volumeDown();
-		    }
-		    /*if (e.keyCode == '77'){ // 'M' (mute)
-		    	toggleMute();
-		    }*/
+document.onkeydown= function (e) {
+	e = e || window.event;
+	
+	$("#search").keydown(function(){
 		
-		}
+	})
+	
+
+    if (e.keyCode == '32' || e.keyCode == '75') { // 'SPACE' (pause)
+    	togglePlay()
+    }
+    if (e.keyCode == '37' || e.keyCode == '74'){ // 'LEFT' (rewind)
+    	rewind();
+    }
+    if (e.keyCode == '39' || e.keyCode == '76'){ // 'RIGHT' (forward)
+    	fastForward();
+    }
+    if (e.keyCode == '38'){ // 'UP' (volume up)
+    	volumeUp();
+    }
+    if (e.keyCode == '40'){ // 'DOWN' (volume down)
+    	volumeDown();
+    }
+    /*if (e.keyCode == '77'){ // 'M' (mute)
+    	toggleMute();
+    }*/
+
+}
 
 
 
