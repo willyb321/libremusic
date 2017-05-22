@@ -57,6 +57,7 @@
     margin-right:auto;
     display:block;
     z-index: 1;
+    user-select: none;
 }
 
 #toggleMuteButton{
@@ -67,6 +68,7 @@
     right:32px;
     position:absolute;
     bottom:31px;
+    user-select: none;
 }
 
 #favourite{
@@ -76,11 +78,36 @@
     position:absolute;
     bottom:31px;
     width:24px;
+    user-select: none;
 }
+
+
+#youtube{
+	width:24px;	
+    bottom:0;
+    right:160px;
+    position:absolute;
+    bottom:31px;
+    width:24px;
+    user-select: none;
+}
+
+#youtubeactive{
+	width:24px;	
+    bottom:0;
+    right:160px;
+    position:absolute;
+    bottom:31px;
+    width:24px;
+    visibility: hidden;
+    user-select: none;
+}
+
 
 #album{
 	float:left;
-	position:absolute
+	position:absolute;
+	user-select: none;
 }
 
 input[type=range] {
@@ -215,6 +242,7 @@ body{
 	width:100px;
 	height:100px;
 	border-radius: 2px;
+	user-select: none;
 
 	
 }
@@ -255,9 +283,22 @@ body{
 }
 
 #player{
-	position: absolute;
+	position: fixed;
+	left: 0; 
+	top: 0;
+	border: none;
+	z-index:2;
+	height:calc(100% - 86px);
+	pointer-events:none;
+}
+
+#clickShield{
+	position: fixed;
 	left: 0; 
 	top: 0;
 	border: none;
 	z-index:1;
+	height:calc(100% - 86px);
+	width:100%;
+	visibility: hidden;
 }

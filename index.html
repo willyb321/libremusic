@@ -1,7 +1,7 @@
 <html>
 <head>
 
-	<link href="style.css" rel="stylesheet">
+	
   	<script type="text/javascript" src="script.js"></script>
 	<script type="text/javascript" src="blob-util.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
@@ -12,8 +12,12 @@
 	$(document).ready(function(){
 		document.getElementById("history").innerHTML = localStorage.getItem("history");
 		document.getElementById("favourites").innerHTML = localStorage.getItem("favourites");
+		$('#player').fadeOut(0);
+		$('#youtubeactive').fadeOut(0);
   	});
   	</script>
+
+  	<link href="style.css" rel="stylesheet">
 
 	<title>Libremusic</title>
 
@@ -21,9 +25,9 @@
 
 <body>
 
-	<div id="player" style="visibility: hidden">
+	<div id="player" style="visibility: hidden"></div>
+	<img src="album.png" id="clickShield" draggable="false" oncontextmenu="return false">
     							
-    </div>
 
 	<div id="navbar">
 		<div id="heading">
@@ -43,6 +47,8 @@
 		<img src="icons/play.svg" onclick="togglePlay()" id="playPauseButton">
 		<img src="icons/loud.svg" onclick="toggleMute()" id="toggleMuteButton">
 		<img src="icons/favourite.svg" onclick="addToFavourites()" id="favourite">
+		<img src="icons/youtube.svg" onclick="toggleVideo()" id="youtube">
+		<img src="icons/youtubered.svg" onclick="toggleVideo()" id="youtubeactive">
 		<div id="title"></div>
 	</div>
 

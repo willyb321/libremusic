@@ -27,9 +27,11 @@ function loadSong(query) {
 		getTrackInfo(artist,name)
 		.then(function (data) {
 
-			var mbid = data.track.mbid;
+			var mbid = 'h' + btoa((name+" - "+artist).match(/[\p{L}\s]+/g)).replace(/=/g,"");
+			console.log(mbid);
 			var albumURL =  data.track.album.image[2]["#text"];
 			$("." + mbid).remove();
+
 		
 
 			imgsrcToB64(albumURL)
@@ -38,27 +40,65 @@ function loadSong(query) {
 
 
 				document.getElementById("history").innerHTML =
-				"<a class='card " + mbid + "' href='javascript:searchVideo(\""+name+" - "+artist+"\")'>"+
+				"<a class='card " + mbid + "' href='javascript:searchVideo(\""+name.replace("'","")+" - "+artist+"\")'>"+
 				"<img class='album' src='"+art+"'>"+
 				"<br>"+
 				"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
 				"</a>"
 				+ document.getElementById("history").innerHTML;
 
-				
-				localStorage.setItem("history", document.getElementById("history").innerHTML);
-
-
 			})
 			
 
 		})
 		.catch(function (data){
+			var mbid = 'h' + btoa((name+" - "+artist).match(/[\p{L}\s]+/g)).replace(/=/g,"");
+			console.log(mbid)
+			$("." + mbid).remove();
 			console.error("Could not find album art for " + query);
 			document.getElementById("album").src="album.png";
+
+			document.getElementById("history").innerHTML =
+				"<a class='card " + mbid + "' href='javascript:searchVideo(\""+name.replace("'","")+" - "+artist+"\")'>"+
+				"<img class='album' src='album.png'>"+
+				"<br>"+
+				"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
+				"</a>"
+				+ document.getElementById("history").innerHTML;
 		})
 
+		localStorage.setItem("history", document.getElementById("history").innerHTML);
 
 
+	})
+}
+
+
+function addToFavourites(){
+	searchTrack(document.getElementById("title").innerText)
+	.then(function (data) {
+
+		// Define artist and name from API
+		const artist = data.results.trackmatches.track[0].artist;
+		const name = data.results.trackmatches.track[0].name;
+
+		// Get album art url from loaded album art
+		art = document.getElementById("album").src;
+		// Create unique song ID
+		var mbid = 'f' + btoa((name+" - "+artist).match(/[\p{L}\s]+/g)).replace(/=/g,"");
+		// Remove existing songs with the same ID
+		$("." + mbid).remove();
+
+		// Add new favourites card
+		document.getElementById("favourites").innerHTML =
+		"<a class='card " + mbid + "' href='javascript:searchVideo(\""+name.replace("'","")+" - "+artist+"\")'>"+
+		"<img class='album' src='"+art+"'>"+
+		"<br>"+
+		"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
+		"</a>"
+		+ document.getElementById("favourites").innerHTML;
+
+		// Save new favourites
+		localStorage.setItem("favourites", document.getElementById("favourites").innerHTML);
 	})
 }

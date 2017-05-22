@@ -210,34 +210,6 @@ function searchVideo(query){
 }
 
 
-function addToFavourites(){
-
-	fav = document.getElementById("favourite");
-
-	if (fav.src = "icons/favourite.svg") {
-		document.getElementById("favourite").src = "icons/favouritegold.svg";
-	} else {
-		document.getElementById("favourite").src = "icons/favourite.svg";
-	}
-
-	
-	name = document.getElementById("title").innerText;
-	artist = name.slice(name.indexOf("-")+1,name.length);
-	name = name.slice(0,name.indexOf("-")-1);
-	art = document.getElementById("album").src;
-
-	document.getElementById("favourites").innerHTML =
-				"<a class='card' href='javascript:searchVideo(\""+name+" - "+artist+"\")'>"+
-				"<img class='album' src='"+art+"'>"+
-				"<br>"+
-				"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
-				"</a>"
-				+ document.getElementById("favourites").innerHTML;
-
-	localStorage.setItem("favourites", document.getElementById("favourites").innerHTML);
-
-}
-
 function clearHistory(){
 	localStorage.removeItem("history")
 	document.getElementById("history").innerHTML = '';
@@ -252,6 +224,44 @@ async function imgsrcToB64(img) {
   			console.log(err)// error
 		});
 	})
+}
+
+function toggleVideo(){
+
+		if (document.getElementById("player").style.visibility == "hidden" && (player.getPlayerState() == 1 || player.getPlayerState() == 2)){
+			document.getElementById("youtubeactive").style.pointerEvents = "none"
+			document.getElementById("youtube").style.pointerEvents = "none"
+			document.getElementById("player").style.visibility = "visible"
+			document.getElementById("youtubeactive").style.visibility = "visible"
+			$('#player').fadeIn('fast', function() {
+				document.getElementById("clickShield").style.visibility = "visible";
+			});
+			$('#youtubeactive').fadeIn('fast', function() {
+				document.getElementById("youtube").style.visibility = "hidden"
+				document.getElementById("youtubeactive").style.pointerEvents = "all"
+				document.getElementById("youtube").style.pointerEvents = "all"
+			});
+			
+
+		} else if (player.getPlayerState() >= 0){
+			document.getElementById("youtubeactive").style.pointerEvents = "none"
+			document.getElementById("youtube").style.pointerEvents = "none"
+			document.getElementById("clickShield").style.visibility = "hidden"
+			$('#player').fadeOut('fast', function() {
+	   		 document.getElementById("player").style.visibility = "hidden"
+
+	   		 		$('#youtubeactive').fadeOut('fast', function() {
+			   			document.getElementById("youtubeactive").style.visibility = "hidden"
+			   			document.getElementById("youtubeactive").style.pointerEvents = "all"
+						document.getElementById("youtube").style.pointerEvents = "all"
+					});
+				document.getElementById("youtube").style.visibility = "visible"
+			});
+
+			
+			
+		}
+
 }
 
 
