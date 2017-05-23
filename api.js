@@ -54,7 +54,10 @@ function loadSong(query) {
 				"</a>"
 				+ document.getElementById("history").innerHTML;
 
+
 			})
+
+			localStorage.setItem("history", document.getElementById("history").innerHTML);
 			
 
 		})
@@ -79,9 +82,11 @@ function loadSong(query) {
 				"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
 				"</a>"
 				+ document.getElementById("history").innerHTML;
+
+			localStorage.setItem("history", document.getElementById("history").innerHTML);
 		})
 
-		localStorage.setItem("history", document.getElementById("history").innerHTML);
+		
 
 
 	})
