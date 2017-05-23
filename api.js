@@ -34,7 +34,7 @@ function loadSong(query) {
 		getTrackInfo(artist,name)
 		.then(function (data) {
 
-			var mbid = 'h' + btoa((name+" - "+artist).match(/[\p{L}\s]+/g)).replace(/=/g,"");
+			var mbid = 'h' + makeID(artist,name);
 			console.log(mbid);
 			var albumURL =  data.track.album.image[2]["#text"];
 			$("." + mbid).remove();
@@ -54,15 +54,16 @@ function loadSong(query) {
 				"</a>"
 				+ document.getElementById("history").innerHTML;
 
+				localStorage.setItem("history", document.getElementById("history").innerHTML);
 
 			})
 
-			localStorage.setItem("history", document.getElementById("history").innerHTML);
+			
 			
 
 		})
 		.catch(function (data){
-			var mbid = 'h' + btoa((name+" - "+artist).match(/[\p{L}\s]+/g)).replace(/=/g,"");
+			var mbid = 'h' + makeID(artist,name);
 			console.log(mbid)
 			$("." + mbid).remove();
 			console.error("Could not find album art for " + query);
@@ -104,7 +105,7 @@ function addToFavourites(){
 		// Get album art url from loaded album art
 		art = document.getElementById("album").src;
 		// Create unique song ID
-		var mbid = 'f' + btoa((name+" - "+artist).match(/[\p{L}\s]+/g)).replace(/=/g,"");
+		var mbid = 'f' + makeID(artist,name);
 		// Remove existing songs with the same ID
 		$("." + mbid).remove();
 
@@ -127,13 +128,15 @@ function loadTopTracks(){
 	getTopTracks()
 	.then(function(data){
 		html = '';
-		for (i=0;i<8;i++){
-			name = data.tracks.track[i].name;
-			artist = data.tracks.track[i].artist.name;
-			art = data.tracks.track[i].image[2]["#text"];
-			console.log(art)
+		for (z=0;z<8;z++){
+			name = data.tracks.track[z].name;
+			artist = data.tracks.track[z].artist.name;
+			art = data.tracks.track[z].image[2]["#text"];
+			console.log(name);
+			console.log(artist)
+			console.log(art);
 
-			var mbid = 'p' + btoa((name+" - "+artist).match(/[\p{L}\s]+/g)).replace(/=/g,"");
+			var mbid = 'p' + makeID(artist,name);
 
 
 			html = html +
@@ -141,10 +144,10 @@ function loadTopTracks(){
 			"<img class='album' src='"+art+"'>"+
 			"<br>"+
 			"<div class='subtitle'>"+name+"<br>"+artist+"</div>"+
-			"</a>"
-			;
+			"</a>";
 
 		}
+
 		document.getElementById("popular").innerHTML = html;
 		
 	})

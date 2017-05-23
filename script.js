@@ -285,3 +285,14 @@ function toggleVideo(){
 }
 
 
+
+function makeID(artist,name){
+	conv = ""
+	str = artist+name;
+	for (i=0;i<str.length;i++) {
+		conv += str.charCodeAt(i)
+	}
+	conv = btoa(parseInt(conv));
+	conv = conv.replace(/=/g,"-");
+	return conv;
+}
