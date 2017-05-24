@@ -19,7 +19,6 @@ function onYouTubeIframeAPIReady() {
 	});
 
 }
-
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
 		var prog = document.getElementById("myBar");

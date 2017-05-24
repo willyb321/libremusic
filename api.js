@@ -1,6 +1,5 @@
 const api_key = "39b6e795e0e08c0448bb80df33231284"
 
-
 function searchTrack(query){
 	query = query.replace(" ", "+");
 	return $.ajax({
