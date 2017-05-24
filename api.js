@@ -127,7 +127,7 @@ function loadTopTracks() {
 	getTopTracks()
 		.then(function (data) {
 			html = '';
-			for (z = 0; z < 8; z++) {
+			for (z = 0; z < 16; z++) {
 				name = data.tracks.track[z].name;
 				artist = data.tracks.track[z].artist.name;
 				art = data.tracks.track[z].image[2]["#text"];

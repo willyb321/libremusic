@@ -171,31 +171,31 @@ function togglePlay() {
 // This function manages hotkeys
 
 document.onkeydown = function (e) {
+	cancel = false;
 	e = e || window.event;
 
-	$("#search").keydown(function () {
+	if (!$("#search").is(":focus")){
+		if (e.keyCode == '32' || e.keyCode == '75') { // 'SPACE' (pause)
+			togglePlay()
+			return false;
+		}
+		if (e.keyCode == '37' || e.keyCode == '74') { // 'LEFT' (rewind)
+			rewind();
+		}
+		if (e.keyCode == '39' || e.keyCode == '76') { // 'RIGHT' (forward)
+			fastForward();
+		}
+		if (e.keyCode == '38') { // 'UP' (volume up)
+			volumeUp();
+		}
+		if (e.keyCode == '40') { // 'DOWN' (volume down)
+			volumeDown();
+		}
+		if (e.keyCode == '77'){ // 'M' (mute)
+			toggleMute();
+		}
+	}
 
-	})
-
-
-	if (e.keyCode == '32' || e.keyCode == '75') { // 'SPACE' (pause)
-		togglePlay()
-	}
-	if (e.keyCode == '37' || e.keyCode == '74') { // 'LEFT' (rewind)
-		rewind();
-	}
-	if (e.keyCode == '39' || e.keyCode == '76') { // 'RIGHT' (forward)
-		fastForward();
-	}
-	if (e.keyCode == '38') { // 'UP' (volume up)
-		volumeUp();
-	}
-	if (e.keyCode == '40') { // 'DOWN' (volume down)
-		volumeDown();
-	}
-	/*if (e.keyCode == '77'){ // 'M' (mute)
-		toggleMute();
-	}*/
 
 }
 

@@ -24,7 +24,7 @@ input[type="range"]::-moz-focus-outer {
 #myBar {
 	width: 0%;
 	height: 4px;
-	background-color: #d32f2f;
+	background-color: #EF5350;
 }
 
 #myBar,
@@ -132,6 +132,7 @@ input[type=range] {
 
 input[type=range]::-webkit-slider-thumb {
 	-webkit-appearance: none;
+	
 }
 
 input[type=range]:focus {
@@ -159,7 +160,7 @@ input[type=range]::-webkit-slider-thumb {
 	/*margin-left:-4px;*/
 	width: 16px;
 	border-radius: 25px;
-	background: #d32f2f;
+	background: #EF5350;
 	cursor: pointer;
 	padding-bottom: 5px;
 	/*margin-top: -14px; */
@@ -179,7 +180,7 @@ input[type=range]::-moz-range-thumb {
 	height: 16px;
 	width: 16px;
 	border-radius: 8px;
-	background: #d32f2f;
+	background: #EF5350;
 	cursor: pointer;
 	border: none;
 	position: fixed;
