@@ -27,7 +27,7 @@ function loadSong(query) {
 			const artist = data.results.trackmatches.track[0].artist;
 			const name = data.results.trackmatches.track[0].name;
 			document.getElementById("title").innerText = name + " - " + artist;
-			
+
 			for (n=0;n<$("#favourites")[0].children.length;n++) {
 				console.log("about to work out your opinion");
 				if ($("#favourites")[0].children[n].lastChild.innerText == name + "\n" + artist){
@@ -105,7 +105,10 @@ function loadSong(query) {
 
 
 function addToFavourites() {
-	searchTrack(document.getElementById("title").innerText)
+
+	if (player.getPlayerState() == 1 || player.getPlayerState() == 2){
+
+		searchTrack(document.getElementById("title").innerText)
 		.then(function (data) {
 
 			// Define artist and name from API
@@ -128,9 +131,23 @@ function addToFavourites() {
 				"</a>" +
 				document.getElementById("favourites").innerHTML;
 
+
+			if ((document.getElementById("favourite").src).endsWith("icons/favourite.svg")) {
+				document.getElementById("favourite").src = "icons/favouritegold.svg"
+			} else if ((document.getElementById("favourite").src).endsWith("icons/favouritegold.svg")) {
+				document.getElementById("favourite").src = "icons/favourite.svg"
+				$("." + mbid).remove();
+			}
+
 			// Save new favourites
 			localStorage.setItem("favourites", document.getElementById("favourites").innerHTML);
 		})
+
+	}
+
+
+
+
 }
 
 function loadTopTracks() {
