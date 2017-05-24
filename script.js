@@ -1,12 +1,9 @@
-// 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
 var player;
 
 function onYouTubeIframeAPIReady() {
@@ -20,12 +17,11 @@ function onYouTubeIframeAPIReady() {
 	});
 
 }
-// 4. The API will call this function when the video player is ready.
+
 function onPlayerReady(event) {
 	var prog = document.getElementById("myBar");
 	var load = document.getElementById("loadBar");
-	// changeSource()
-	// event.target.playVideo();
+
 	player.playVideo()
 
 	var down = false;
@@ -55,17 +51,9 @@ function onPlayerReady(event) {
 	}, 100);
 
 }
-
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
 var done = false;
 
 function onPlayerStateChange(event) {
-	/*if (event.data == YT.PlayerState.PLAYING && !done) {
-		setTimeout(stopVideo, 6000);
-		done = true;
-	}*/
 
 	if (player.getPlayerState() == 1) {
 		document.getElementById("playPauseButton").src = "icons/pause.svg"
@@ -98,18 +86,6 @@ function onPlayerStateChange(event) {
 	}
 
 }
-
-
-// This function takes in a YouTube video id and changes
-// the video on the page to this video
-function changeSource(source) {
-	var source = prompt('Video Id?');
-	player.loadVideoById(source);
-	progressBar();
-	togglePlay();
-
-}
-
 
 // This function defines the rules for the progress bar
 function progressBar(progress, loaded, total) {
@@ -207,7 +183,6 @@ function searchVideo(query) {
 	var prog = document.getElementById("myBar");
 	var load = document.getElementById("loadBar");
 
-
 	player.pauseVideo();
 	progressBar(0, 0, 0);
 
@@ -224,14 +199,7 @@ function searchVideo(query) {
 			list: data.results.trackmatches.track[0].name + " - " + data.results.trackmatches.track[0].artist,
 			index: 0
 		})
-
-
-
-
 	})
-
-
-
 }
 
 
@@ -282,14 +250,8 @@ function toggleVideo() {
 			});
 			document.getElementById("youtube").style.visibility = "visible"
 		});
-
-
-
 	}
-
 }
-
-
 
 function makeID(artist, name) {
 	conv = ""

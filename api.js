@@ -27,7 +27,18 @@ function loadSong(query) {
 			const artist = data.results.trackmatches.track[0].artist;
 			const name = data.results.trackmatches.track[0].name;
 			document.getElementById("title").innerText = name + " - " + artist;
-
+			
+			for (n=0;n<$("#favourites")[0].children.length;n++) {
+				console.log("about to work out your opinion");
+				if ($("#favourites")[0].children[n].lastChild.innerText == name + "\n" + artist){
+					console.log("This song is one of your favourites!");
+					document.getElementById("favourite").src = "icons/favouritegold.svg";
+					break;
+				} else {
+					console.log("I guess you don't like this song that much");
+					document.getElementById("favourite").src = "icons/favourite.svg";
+				}
+			}
 
 
 			getTrackInfo(artist, name)
@@ -36,8 +47,8 @@ function loadSong(query) {
 					var mbid = 'h' + makeID(artist, name);
 					console.log(mbid);
 					var albumURL = data.track.album.image[2]["#text"];
-					$("." + mbid).remove();
 
+					$("." + mbid).remove();
 
 
 					imgsrcToB64(albumURL)
@@ -131,9 +142,6 @@ function loadTopTracks() {
 				name = data.tracks.track[z].name;
 				artist = data.tracks.track[z].artist.name;
 				art = data.tracks.track[z].image[2]["#text"];
-				console.log(name);
-				console.log(artist)
-				console.log(art);
 
 				var mbid = 'p' + makeID(artist, name);
 
