@@ -358,3 +358,27 @@ input[type=text], textarea {
   border: 1px solid #DDDDDD;
 }
 
+@media (min-width: 1366px) {
+	.card{
+		top:0;
+		width:150px;
+		display:inline-block;
+		margin-right:16px;
+		font-weight:400;
+		font-size:80%;
+		text-decoration: none;
+	}
+
+	.album{
+		width:150px;
+		height:150px;
+		border-radius: 4px;
+		user-select: none;
+	}
+
+	#body{
+		margin-top:16px;
+		max-width:1366px;
+	}
+
+}
