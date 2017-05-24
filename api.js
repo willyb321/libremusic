@@ -3,20 +3,20 @@ const api_key = "39b6e795e0e08c0448bb80df33231284"
 function searchTrack(query){
 	query = query.replace(" ", "+");
 	return $.ajax({
-		url:"http://ws.audioscrobbler.com/2.0/?method=track.search&track="+query+"&api_key="+api_key+"&format=json"
+		url:"https://ws.audioscrobbler.com/2.0/?method=track.search&track="+query+"&api_key="+api_key+"&format=json"
 	})
 }
 
 function getTrackInfo(artist, track){
 	return $.ajax({
-		url:"http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key="+api_key+"&artist="+artist+"&track="+track+"&format=json"
+		url:"https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key="+api_key+"&artist="+artist+"&track="+track+"&format=json"
 	});
 }
 
 
 function getTopTracks(artist, track){
 	return $.ajax({
-		url:"http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key="+api_key+"&format=json"
+		url:"https://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key="+api_key+"&format=json"
 	});
 }
 
