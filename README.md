@@ -1,7 +1,7 @@
 # libremusic
 
 This player utilises the YouTube API to stream music.
-https://edj99.github.io/libremusic/
+https://ed-jones.github.io/libremusic/
 
 ## Compilation
 - Install http-server from npm ```npm install -g http-server```
