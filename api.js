@@ -13,7 +13,6 @@ function getTrackInfo (artist, track) {
   })
 }
 
-
 function getTopTracks (artist, track) {
   return $.ajax({
     url: 'https://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=' + apiKey + '&format=json'
@@ -23,7 +22,6 @@ function getTopTracks (artist, track) {
 function loadSong (query) {
   searchTrack(query)
     .then(function (data) {
-
       const artist = data.results.trackmatches.track[0].artist
       const name = data.results.trackmatches.track[0].name
       document.getElementById('title').innerText = name + ' - ' + artist
@@ -37,16 +35,13 @@ function loadSong (query) {
         }
       }
 
-
       getTrackInfo(artist, name)
         .then(function (data) {
-
           var mbid = 'h' + makeID(artist, name)
           console.log(mbid)
           var albumURL = data.track.album.image[2]['#text']
 
           $('.' + mbid).remove()
-
 
           imgsrcToB64(albumURL)
             .then(art => {
@@ -75,7 +70,6 @@ function loadSong (query) {
           }
           document.getElementById('album').src = art
 
-
           document.getElementById('history').innerHTML =
             "<a class='card " + mbid + "' href='javascript:searchVideo(\"" + name.replace("'", '') + ' - ' + artist + "\")'>" +
             "<img class='album' src='" + art + "'>" +
@@ -89,11 +83,8 @@ function loadSong (query) {
     })
 }
 
-
 function addToFavourites () {
-
   if (player.getPlayerState() === 1 || player.getPlayerState() === 2) {
-
     searchTrack(document.getElementById('title').innerText)
       .then(function (data) {
         // Define artist and name from API

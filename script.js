@@ -52,8 +52,6 @@ function onPlayerStateChange (event) {
     document.getElementById('playPauseButton').src = 'icons/pause.svg'
   }
 
-
-
   if (player.getPlayerState() === 0) {
     player.stopVideo()
     progressBar(0, 0, 0)
@@ -88,7 +86,6 @@ function progressBar (progress, loaded, total) {
   load.style.width = loaded
   handle.value = progress
 }
-
 
 // These functions change video settings when called
 function fastForward () {
@@ -132,9 +129,7 @@ function togglePlay () {
   }
 }
 
-
 // This function manages hotkeys
-
 
 document.onkeydown = function (e) {
   e = e || window.event
@@ -182,7 +177,6 @@ function searchVideo (query) {
     })
   })
 }
-
 
 function clearHistory () {
   localStorage.removeItem('history')
