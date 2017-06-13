@@ -59,15 +59,18 @@ function loadSong (query) {
         })
         .catch(function (data) {
           var mbid = 'h' + makeID(artist, name)
-          console.log(mbid)
           $('.' + mbid).remove()
           console.error('Could not find album art for ' + query)
 
-          if ($('.' + mbid.replace('h', 'p')) != null) {
+          if ($('.' + mbid.replace('h', 'p')).length > 0) {
+            console.log("TRIGGERED") 
             art = $('.' + mbid.replace('h', 'p'))[0].firstChild.src
+            
           } else {
             art = 'album.png'
+            console.log("setting a blank slate")
           }
+          console.log(art)
           document.getElementById('album').src = art
 
           document.getElementById('history').innerHTML =
