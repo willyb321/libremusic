@@ -1,0 +1,27 @@
+{
+  "name": "libremusic",
+  "version": "1.0.0",
+  "private": true,
+  "description": "This player utilises the YouTube API to stream music.",
+  "scripts": {
+    "start": "http-server ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ed-jones/libremusic.git"
+  },
+  "keywords": [
+    "youtube",
+    "music",
+    "libremusic"
+  ],
+  "author": "Ed Jones",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ed-jones/libremusic/issues"
+  },
+  "homepage": "https://github.com/ed-jones/libremusic#readme",
+  "dependencies": {
+    "http-server": "^0.10.0"
+  }
+}
