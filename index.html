@@ -2,93 +2,93 @@
 
 <html>
 
-<head>
+	<head>
 
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <script type="text/javascript" src="script.js"></script>
-  <script type="text/javascript" src="blob-util.min.js"></script>
-  <script type="text/javascript" src="script.js"></script>
-  <script type="text/javascript" src="api.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      document.getElementById("history").innerHTML = localStorage.getItem("history");
-      document.getElementById("favourites").innerHTML = localStorage.getItem("favourites");
-      document.getElementById("popular").innerHTML = localStorage.getItem("popular");
-      $('#player').fadeOut(0);
-      $('#youtubeactive').fadeOut(0);
-      loadTopTracks();
+		<link rel="icon" type="image/png" href="favicon.ico">
+		<script type="text/javascript" src="script.js"></script>
+		<script type="text/javascript" src="blob-util.min.js"></script>
+		<script type="text/javascript" src="api.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(() => {
+				document.getElementById("history").innerHTML = localStorage.getItem("history");
+				document.getElementById("favourites").innerHTML = localStorage.getItem("favourites");
+				document.getElementById("popular").innerHTML = localStorage.getItem("popular");
+				$('#player').fadeOut(0);
+				$('#youtubeactive').fadeOut(0);
+				loadTopTracks();
+			});
 
+		</script>
 
-    });
-  </script>
+		<link href="style.css" rel="stylesheet">
 
-  <link href="style.css" rel="stylesheet">
+		<title>Libremusic</title>
 
-  <title>Libremusic</title>
+	</head>
 
-</head>
+	<body>
 
-<body>
-
-  <div id="player" style="visibility: hidden"></div>
-  <img src="album.png" id="clickShield" draggable="false" oncontextmenu="return false">
+		<div id="player" style="visibility: hidden"></div>
+		<img src="album.png" id="clickShield" draggable="false" oncontextmenu="return false">
 
 
-  <div id="navbar">
-    <div id="heading">
-      Libremusic
-    </div>
-  </div>
+		<div id="navbar">
+			<div id="heading">
+				Libremusic
+			</div>
+		</div>
 
 
-  <form action="javascript:searchVideo(document.getElementById('search').value)" name="searchForm">
-    <input type="search" id="search" placeholder="Search" name="search" autocomplete="off">
-  </form>
+		<form action="javascript:searchVideo(document.getElementById('search').value)" name="searchForm">
+			<input type="search" id="search" placeholder="Search" name="search" autocomplete="off">
+		</form>
 
 
 
-  <div class="actions">
-    <img src="album.png" width="86" height="86" id="album">
-    <img src="icons/play.svg" onclick="togglePlay()" id="playPauseButton">
-    <img src="icons/loud.svg" onclick="toggleMute()" id="toggleMuteButton">
-    <img src="icons/favourite.svg" onclick="addToFavourites()" id="favourite">
-    <img src="icons/youtube.svg" onclick="toggleVideo()" id="youtube">
-    <img src="icons/youtubered.svg" onclick="toggleVideo()" id="youtubeactive">
-    <div id="title"></div>
-  </div>
+		<div class="actions">
+			<img src="album.png" width="86" height="86" id="album">
+			<img src="icons/play.svg" onclick="togglePlay()" id="playPauseButton">
+			<img src="icons/loud.svg" onclick="toggleMute()" id="toggleMuteButton">
+			<img src="icons/favourite.svg" onclick="addToFavourites()" id="favourite">
+			<img src="icons/youtube.svg" onclick="toggleVideo()" id="youtube">
+			<img src="icons/youtubered.svg" onclick="toggleVideo()" id="youtubeactive">
+			<div id="title"></div>
+		</div>
 
 
-  <div id="body">
+		<div id="body">
 
-    <h2>Favourites</h2>
-    <div id="favourites">
-    </div>
+			<h2>Favourites</h2>
+			<div id="favourites">
+			</div>
 
-    <h2>History</h2>
-    <div id="history">
-    </div>
+			<h2>History</h2>
+			<div id="history">
+			</div>
 
-    <h2>Popular</h2>
-    <div id="popular">
-    </div>
-
-
-
-  </div>
-
-  <div id="myProgress">
-    <div id="myBar"></div>
-    <div id="loadBar"></div>
-    <input id="progress" type="range" value="0" min="0" max="100000" onchange="seek(this)">
+			<h2>Popular</h2>
+			<div id="popular">
+			</div>
 
 
-  </div>
-  <script>
-  </script>
+
+		</div>
+
+		<div id="myProgress">
+			<div id="myBar"></div>
+			<div id="loadBar"></div>
+			<input id="progress" type="range" value="0" min="0" max="100000" onchange="seek(this)">
 
 
-</body>
+		</div>
+		<script>
+
+
+		</script>
+
+
+	</body>
 
 
 </html>
